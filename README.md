@@ -1,1 +1,2 @@
 # weather-woman
+Here is an app that allows you to view the current and future weather for any selected city, and saves each previously entered city into local storage and the search history for easier access for future use.
