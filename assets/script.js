@@ -12,34 +12,26 @@ displayDate();
 
 
 function getForecast() {
-    var apiKey = "2fb741816a067a27d0300c6b4d43a620";
+    var apiKey = "5b3427194eea478d19c9cfad5fadf389";
     var city = document.getElementById("city-text").value;
     var forecastContainer = document.getElementById("forecast");
     var currentDateElement = document.getElementById("currentDate");
     var temperatureElement = document.getElementById("temperature");
     var windElement = document.getElementById("wind");
     var humidityElement = document.getElementById("humidity");
-    // Saves the entered city to local storage
     saveCity(city);
 
-    //API request
+
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`)
         .then(response => response.json())
         .then(data => {
             forecastContainer.innerHTML = "";
-
-            // Displays the current forecast
-            var currentDay = data.list[0];
-            var currentDate = currentDay.dt_txt.split(" ")[0];
-            currentDateElement.textContent = currentDate;
-
+            console.log(data)
 
             // Displays the forecast for each day
             for (let i = 0; i < data.list.length; i += 8) {
                 var forecast = data.list[i];
-
                 var date = forecast.dt_txt.split(" ")[0];
-
                 var card = document.createElement("div");
                 card.classList.add("card");
 
@@ -71,7 +63,7 @@ function getForecast() {
         });
 }
 
-// Function to save the entered city to local storage
+// save city to local storage
 function saveCity(city) {
     let cities = localStorage.getItem("cities");
 
